@@ -1,9 +1,13 @@
 const express = require("express");
+const cors = require('cors');
+
 const { dbConnection } = require("./database/config");
 require("dotenv").config();
 //Crear servidor express
 
 const app = express();
+
+app.use(cors());
 
 dbConnection();
 //Middleware para recibir la información de peticiones en formato JSON
@@ -27,6 +31,6 @@ app.use(express.static("public"));
 
 
 // Escuchar peticiones
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log(`Servidor corriendo en puerto ${process.env.PORT}`);
 });
