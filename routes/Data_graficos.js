@@ -3,7 +3,7 @@ const { dataGraficosPrueba } = require("../controllers/Data_graficos_prueba");
 const router = Router();
 
 
-router.post("/graficos",[], dataGraficosPrueba )
+router.get("/",[], dataGraficosPrueba )
 
 
 module.exports = router;
