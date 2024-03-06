@@ -10,4 +10,4 @@ const dataGraficosPrueba     = async (req = request, res = response) => {
 
   
 
-module.exports = {dataGraficos};
+module.exports = {dataGraficosPrueba};
