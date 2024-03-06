@@ -13,11 +13,11 @@ dbConnection();
 //Middleware para recibir la información de peticiones en formato JSON
 app.use(express.json())
 
-
-
 app.use("/api/new", require("./routes/Insertar_partido"));
 
 app.use("/api/equipo", require("./routes/Obtener_partidos"));
+
+app.use("/api/graficos", require("./routes/Obtener_partidos"));
 
 //Rutas para CRUD: Eventos
 
@@ -25,11 +25,9 @@ app.use("/api/equipo", require("./routes/Obtener_partidos"));
 app.use(express.static("public"));
 
 
-//Lectura y parseo del body - (Recibir la información que se hace con una petición, es decir recibir info como nombre, correo, y password
+//Lectura y parseo del body - (Recibir la información que se hace con una petición, 
+//es decir recibir info como nombre, correo, y password
 //en una petición post)
-
-
-
 // Escuchar peticiones
 app.listen(process.env.PORT || 5000, () => {
     console.log(`Servidor corriendo en puerto ${process.env.PORT}`);
