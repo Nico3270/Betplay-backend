@@ -17,7 +17,7 @@ app.use("/api/new", require("./routes/Insertar_partido"));
 
 app.use("/api/equipo", require("./routes/Obtener_partidos"));
 
-app.use("/api/graficos", require("./routes/Obtener_partidos"));
+app.use("/api/graficos", require("./routes/Data_graficos"));
 
 //Rutas para CRUD: Eventos
 
