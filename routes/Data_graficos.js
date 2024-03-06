@@ -1,9 +1,10 @@
 const { Router } = require("express");
-const { dataGraficosPrueba } = require("../controllers/Data_graficos_prueba");
+
+const { dataGraficos } = require("../controllers/Data_graficos");
 const router = Router();
 
 
-router.get("/",[], dataGraficosPrueba )
+router.get("/",[],dataGraficos)
 
 
 module.exports = router;
