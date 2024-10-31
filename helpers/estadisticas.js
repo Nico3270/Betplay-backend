@@ -37,8 +37,11 @@ const calcularPromedioOpcion = (partidos, esEquipoLocal, opcion, equipo) => {
 
 const reporteEquipo = (Data, equipo) => {
     const partidosLocal = Data.filter(partido => partido.equipo1 === equipo);
+    console.log('Partidos locales:', partidosLocal);
+
     // Filtrar partidos donde "Chelsea" juega como equipo visitante (equipo2)
     const partidosVisitante = Data.filter(partido => partido.equipo2 === equipo);
+    console.log('Partidos visitantes:', partidosVisitante);
 
     const MarcadorLocal = calcularPromedioOpcion(partidosLocal, true, 'marcador', equipo);
     const MarcadorVisitante = calcularPromedioOpcion(partidosVisitante, false, 'marcador', equipo);

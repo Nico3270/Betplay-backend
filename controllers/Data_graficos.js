@@ -1,7 +1,5 @@
 const { response, request } = require("express");
 const Equipo = require("../models/Equipo");
-const Partido = require("../models/Registro");
-const { reporteEquipo } = require("../helpers/estadisticas");
 
 const dataGraficos = async (req = request, res = response) => {
   const { equipo } = req.query;
@@ -61,24 +59,28 @@ const dataGraficos = async (req = request, res = response) => {
         "faltas",
         "tarjetas",
       ].forEach((estadistica) => {
-        const valor = partido[estadistica].split("-");
-        const valorEquipoObjetivo = esLocal ? valor[0] : valor[1];
-        const valorOponente = esLocal ? valor[1] : valor[0];
+        if (partido[estadistica]) {
+          const valor = partido[estadistica].split("-");
+          const valorEquipoObjetivo = esLocal ? valor[0] : valor[1];
+          const valorOponente = esLocal ? valor[1] : valor[0];
 
-        estructuraDatos[claveCondicion][estadistica].EquipoObjetivo.push(
-          valorEquipoObjetivo
-        );
-        estructuraDatos[claveCondicion][estadistica].EquipoOponente.push(
-          valorOponente
-        );
+          estructuraDatos[claveCondicion][estadistica].EquipoObjetivo.push(
+            valorEquipoObjetivo
+          );
+          estructuraDatos[claveCondicion][estadistica].EquipoOponente.push(
+            valorOponente
+          );
 
-        // Acumular para promedios
-        estructuraDatos.Promedio[estadistica].CondicionLocal.push(
-          esLocal ? valorEquipoObjetivo : 0
-        );
-        estructuraDatos.Promedio[estadistica].CondicionVisitante.push(
-          !esLocal ? valorEquipoObjetivo : 0
-        );
+          // Acumular para promedios
+          estructuraDatos.Promedio[estadistica].CondicionLocal.push(
+            esLocal ? valorEquipoObjetivo : 0
+          );
+          estructuraDatos.Promedio[estadistica].CondicionVisitante.push(
+            !esLocal ? valorEquipoObjetivo : 0
+          );
+        } else {
+          console.log(`La estadística ${estadistica} no está definida para este partido`);
+        }
       });
     });
 
@@ -105,4 +107,4 @@ const dataGraficos = async (req = request, res = response) => {
   }
 };
 
-module.exports = {dataGraficos}
+module.exports = { dataGraficos };
